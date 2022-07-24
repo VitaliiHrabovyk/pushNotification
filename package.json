@@ -1,0 +1,16 @@
+{
+  "name": "nodeback",
+  "version": "1.0.0",
+  "description": "pushNotifications",
+  "main": "send.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node send.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "web-push": "^3.5.0"
+  }
+}
