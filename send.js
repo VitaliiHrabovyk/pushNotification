@@ -27,6 +27,7 @@ function sendNewsletter(req, res) {
     console.log(req.query.title)
     console.log(req.query.body)
     console.log(typeof(req.query.subscribe))
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     let subscribe = JSON.parse(req.query.subscribe)
 
