@@ -28,6 +28,7 @@ function sendNewsletter(req, res) {
     console.log(req.query.body)
     console.log(typeof(req.query.subscribe))
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Origin', "*");
 
     let subscribe = JSON.parse(req.query.subscribe)
 
