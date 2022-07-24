@@ -1,7 +1,9 @@
 const express = require('express');
 const webpush = require('web-push');
+var cors = require('cors')
 
 var app = express();
+app.options('*', cors())
 
 app.get("/", function(request, response){
     response.send("send service alive");
@@ -27,8 +29,11 @@ function sendNewsletter(req, res) {
     console.log(req.query.title)
     console.log(req.query.body)
     console.log(typeof(req.query.subscribe))
+
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Origin', "*");
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
+    
 
     let subscribe = JSON.parse(req.query.subscribe)
 
