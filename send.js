@@ -10,6 +10,10 @@ app.use(function(req, res, next) {
     next();  
   });
 
+  app.use(cors({
+    origin: 'http://localhost:4200/'
+}));
+
 
 app.get("/", function(request, response){
     response.send("send service alive");
@@ -33,7 +37,7 @@ app.post("/api/send",cors(), function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
-    
+
     console.log(req.query)
     console.log(req.query.title)
     console.log(req.query.body)
