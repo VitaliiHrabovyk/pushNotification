@@ -1,9 +1,14 @@
 const express = require('express');
 const webpush = require('web-push');
-var cors = require('cors')
-
 var app = express();
-app.options('*', cors())
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
+    next();  
+  });
+
 
 app.get("/", function(request, response){
     response.send("send service alive");
@@ -23,18 +28,15 @@ webpush.setVapidDetails(
 
 
 
-app.route('/api/send').post(sendNewsletter);
+app.post("/api/send", function (req, res) {
 
-function sendNewsletter(req, res) {
+
+    console.log(req.query)
     console.log(req.query.title)
     console.log(req.query.body)
     console.log(typeof(req.query.subscribe))
 
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
     
-
     let subscribe = JSON.parse(req.query.subscribe)
 
     const allSubscriptions = [subscribe]
@@ -65,7 +67,7 @@ function sendNewsletter(req, res) {
             console.error("Error sending notification, reason: ", err);
             res.sendStatus(500);
         });
-}
+})
 
 
 
