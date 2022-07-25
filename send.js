@@ -30,8 +30,10 @@ webpush.setVapidDetails(
 
 
 app.post("/api/send",cors(), function (req, res) {
-
-
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
+    
     console.log(req.query)
     console.log(req.query.title)
     console.log(req.query.body)
