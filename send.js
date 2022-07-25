@@ -1,6 +1,7 @@
 const express = require('express');
 const webpush = require('web-push');
 var app = express();
+var cors = require('cors')
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -28,7 +29,7 @@ webpush.setVapidDetails(
 
 
 
-app.post("/api/send", function (req, res) {
+app.post("/api/send",cors(), function (req, res) {
 
 
     console.log(req.query)
