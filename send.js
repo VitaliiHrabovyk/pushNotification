@@ -6,15 +6,8 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors({ origin: 'http://localhost:4200'})); // change on deploy
+app.use(cors({ origin: 'https://vitaliygrabovik.pp.ua'})); // change on deploy
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Credentials", true);
-    next();  
-  });
 
 app.get("/", function(request, response){
     response.send("send service work");
@@ -33,12 +26,9 @@ webpush.setVapidDetails(
 );
 
 
-
 app.post("/api/send", function (req, res) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Credentials", true);
+
+    res.setHeader('Access-Control-Allow-Origin', "https://vitaliygrabovik.pp.ua")
 
     console.log(req.body)
     console.log(req.body.title)
